@@ -20,3 +20,9 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('projects', 'ProjectController');
+
+Route::get('/projects/{id}/dashboard', 'ProjectController@dashboard');
+
+Route::resource('project_users', 'ProjectUserController');
+
+//Route::get('/{{id}}/dashboard', 'ProjectController@dashboard');
