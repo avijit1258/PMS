@@ -28,7 +28,8 @@ class ProjectUserController extends Controller
      */
     public function create()
     {
-        $projects = DB::select("SELECT * FROM project where 1");
+        $auth = \Auth::user()->id;
+        $projects = DB::select("SELECT * FROM project, project_user where user_id='$auth' AND project_user.project_id = project.id AND (role_id = 1 OR role_id = 2) ");
         $users = DB::select("SELECT * FROM users where 1");
         $roles = DB::select("SELECT * FROM role where 1");
 
@@ -96,6 +97,27 @@ class ProjectUserController extends Controller
     public function destroy($id)
     {
         DB::delete("DELETE FROM project_user where 'id'=$id");
-        return redirect()->back();
+        
+        return redirect('/home');
+    }
+
+    public function all_user($id)
+    {
+        $sl = 1;
+        $project_users = DB::select("SELECT * FROM project,project_user, role, users WHERE project_id='$id' AND project_user.role_id = role.id AND project_user.project_id = project.id AND project_user.user_id = users.id");
+        return view('project_user.all_user',compact('project_users', 'sl'));
+    }
+    public function showing_add_request()
+    {
+        $auth = \Auth::user()->id;
+        $add_requests = DB::select("SELECT project_name, role_name, project_user.id AS serial FROM project_user,users,role, project WHERE users.id = project_user.user_id AND project_user.role_id = role.id AND project_user.project_id = project.id AND user_id='$auth' AND active = 0 ");
+
+        $sl = 1;
+        return view('home',compact('add_requests', 'sl'));
+    }
+    public function confirm()
+    {
+        DB::update("UPDATE project_user SET active = 1");
+        return redirect('/projects');
     }
 }

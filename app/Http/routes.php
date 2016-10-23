@@ -17,12 +17,19 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'ProjectUserController@showing_add_request');
 
 Route::resource('projects', 'ProjectController');
 
 Route::get('/projects/{id}/dashboard', 'ProjectController@dashboard');
 
 Route::resource('project_users', 'ProjectUserController');
+Route::put('/project_users/{id}/confirm', 'ProjectUserController@confirm');
+
+Route::get('/project_user/{id}/all_user', 'ProjectUserController@all_user');
+
+Route::resource('tasks', 'TaskController');
+
+Route::get('/tasks/create/{id}', 'TaskController@create');
 
 //Route::get('/{{id}}/dashboard', 'ProjectController@dashboard');

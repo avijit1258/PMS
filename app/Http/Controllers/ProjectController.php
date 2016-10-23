@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Project;
 use App\Http\Requests;
 
 class ProjectController extends Controller
@@ -15,10 +16,14 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = DB::select("SELECT * FROM project WHERE 1");
-        
+        $sl = 1;
+        $auth = \Auth::user()->id;
+        //$projects = DB::select("SELECT * FROM project WHERE 'project_owner' = $auth");
+        $projects = DB::select("SELECT * FROM project, project_user WHERE project.id = project_user.project_id AND user_id = '$auth'");
+        //dd($projects);
+        //dd($projects);
 
-        return view('project.index', compact('projects'));
+        return view('project.index', compact('projects', 'sl'));
     }
 
     /**
@@ -39,8 +44,14 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $auth = \Auth::user()->id;
         DB::insert("INSERT INTO project (project_name) VALUES ('$request->project_name')");
-
+        $project_id = DB::select("SELECT id FROM project WHERE project_name = '$request->project_name'");
+        //dd($project_id[0]->id);
+        $id = $project_id[0]->id;
+        DB::insert("INSERT INTO project_user (project_id, user_id, role_id) VALUES
+            ('$id','$auth' , 2)");
+        
         return redirect('/projects');
     }
 
@@ -100,8 +111,16 @@ class ProjectController extends Controller
 
     public function dashboard($id)
     {
+
+        $auth = \Auth::user()->id;//for giving permision to edit task to assigned users
         $project = DB::select("SELECT * FROM project WHERE id = '$id' ");
-        //dd($project);
-        return view('project.dashboard', compact('project'));
+        $tasks = DB::select("SELECT task, assigned_to,status_id, role_id , task.id AS tid, task.project_id FROM task,project_user WHERE task.project_id = '$id' AND assigned_to = user_id AND task.project_id = project_user.project_id");
+        //$role_auth = DB::select("SELECT role_id FROM project_user WHERE project_id = '$id' AND user_id = '$auth'"); 
+        //dd($tasks);
+        //for showing user add option to product owner and scrum master
+        $if_admin = DB::select("SELECT role_id FROM project_user WHERE user_id = '$auth' AND project_id = '$id'");
+        
+
+        return view('project.dashboard', compact('project', 'tasks', 'id', 'auth', 'if_admin'));
     }
 }

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SCRUM</title>
+    <title>Project Management Software</title>
     <link href={{asset("css/bootstrap.css")}} rel="stylesheet" />
 
     <link href={{asset("css/bootstrap-theme.css") }} rel="stylesheet" />
@@ -35,7 +35,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img alt="SCRUM" src="/image/Scrum.png">
+                    <img alt="SCRUM" src="/image/LOGO1.png">
                 </a>
             </div>
 
@@ -53,24 +53,7 @@
                        </ul>
                     </li>
 
-                    <li class="dropdown">
-                      <a href="{{url('#')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project_User <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="{{ url('/project_users/create') }}">Add Project User</a></li>
-                        <li><a href="{{ url('/project_users/') }}">See all project user</a></li>
-                        
-                       </ul>
-                    </li>
-
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Feature <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="{{ url('/projects/create') }}">Add Feature</a></li>
-                        <li><a href="{{ url('/projects') }}">See all Features</a></li>
-                        
-                       </ul>
-                    </li>
-
+                    
 
 
                     @endif

@@ -17,13 +17,13 @@
 
 				@foreach($projects as $project)
 				<tr>
-				<th scope="row">{{$sl++}}</th>
+				<th scope="row">{{$project->id}}</th>
 				<td>{{$project->project_name}}</td>
-				<td><a href="/projects/{{$project->project_id}}/dashboard">Dashboard</a></td>
+				<td><a href="/projects/{{$project->id}}/dashboard">Dashboard</a></td>
 		
  
- 				</tr>
-				@endforeach
+ 		</tr>
+			@endforeach
 			</tbody>
 			
 		</table>
