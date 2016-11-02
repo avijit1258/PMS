@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
 <div class="container narrow">
   <div class="panel panel-default">
     <div class="panel-header">

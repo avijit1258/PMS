@@ -45,6 +45,9 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $auth = \Auth::user()->id;
+
+        $this->validate($request, ['project_name' => 'required|max:22']);
+
         DB::insert("INSERT INTO project (project_name) VALUES ('$request->project_name')");
         $project_id = DB::select("SELECT id FROM project WHERE project_name = '$request->project_name'");
         //dd($project_id[0]->id);

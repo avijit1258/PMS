@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+<ul class="nav nav-pills" role="tablist">
+  <li role="presentation" class="active"><a href="#">Requests<span class="badge">{{count($add_requests)}}</span></a></li>
+  
+</ul>
+
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">

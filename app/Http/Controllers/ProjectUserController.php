@@ -44,8 +44,8 @@ class ProjectUserController extends Controller
      */
     public function store(Request $request)
     {
-        
-         DB::insert("INSERT INTO project_user (project_id, user_id, role_id) VALUES ('$request->project_id', '$request->user_id', '$request->role_id')");
+        $this->validate($request, ['project_id' => 'required|int', 'user_id' => 'required', 'role_id' => 'required']);
+        DB::insert("INSERT INTO project_user (project_id, user_id, role_id) VALUES ('$request->project_id', '$request->user_id', '$request->role_id')");
          return redirect()->back();
     }
 

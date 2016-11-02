@@ -46,6 +46,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, ['task' => 'required|alpha_num', 'assigned_to' => 'required', 'project_id' => 'required', 'status_id' => 'required', 'task_type_id' => 'required']);
         DB::insert("INSERT INTO task (task, assigned_to, project_id, status_id, task_type_id) VALUES ('$request->task', '$request->assigned_to', '$request->project_id', '$request->status_id', '$request->task_type_id')");
 
          
