@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="container-fluid">
 	<div class="col-md-6">
 		<table class="table table-bordered table-hover ">
 			<thead>
@@ -27,5 +27,12 @@
 			</tbody>
 			
 		</table>
+
+		<br>
+		<div>
+			
+		</div>
+
+	</div>
 	</div>
 @endsection

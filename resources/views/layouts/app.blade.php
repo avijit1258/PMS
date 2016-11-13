@@ -13,15 +13,28 @@
     <style>
         body {
             font-family: 'Lato';
+            
+            background-image: url('/image/wood_pattern.png');
         }
 
         .fa-btn {
             margin-right: 6px;
         }
+        .footerholder {
+        background: blue;
+        height: 60px;
+        margin-top: 4px;
+        margin-left: 310px;
+        width: 700px;
+        text-align:center;
+        padding:10px;
+        color:#ffffff;
+        }
     </style>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-inverse navbar-static-top">
+        <center>
         <div class="container">
             <div class="navbar-header">
 
@@ -79,11 +92,20 @@
                 </ul>
             </div>
         </div>
+        </center>
     </nav>
 
     @yield('content')
+    <div class="footerholder">
+    <footer>
+            <div class="row">
+                <p>   All rights reserved By Computer Science & Engineering Discipline</p>
+                <p> Khulna University , Khulna-9100</p>
+            </div>
+    </footer>
+    </div>
     <script src={{asset("jquery-1.9.1.min.js") }}></script>
     <script src={{asset("js/bootstrap.min.js") }}></script>
-
+    
 </body>
 </html>

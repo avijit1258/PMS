@@ -123,7 +123,7 @@ class ProjectController extends Controller
         //for showing user add option to product owner and scrum master
         $if_admin = DB::select("SELECT role_id FROM project_user WHERE user_id = '$auth' AND project_id = '$id'");
         
-
+        //dd($if_admin);
         return view('project.dashboard', compact('project', 'tasks', 'id', 'auth', 'if_admin'));
     }
 }

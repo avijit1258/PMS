@@ -15,7 +15,7 @@
 
                 <div class="panel-body">
                     @if(count($add_requests) <= 0)
-                    <h1>Bravo You have no pending request</h1>
+                    <h1> You have no pending request</h1>
                     @else
                     <table class="table table-bordered table-hover ">
                         <thead>

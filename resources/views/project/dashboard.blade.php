@@ -7,16 +7,24 @@
 <style>
  th, td {
     border: 2px solid blue;
+
+}
+th{
+  font-size: 150%;
 }
 .b{
   padding: 2px;
+  width: 220px;
+  height: 450px;
+  overflow: auto;
+  
 }
 
 .b1{
   background: red;
   float:left;
   border: 2px solid black;
-   margin: 4px;
+  margin: 4px;
 
 }
 
@@ -27,11 +35,14 @@
   margin: 4px;
 }
 .b3{
-  background: red;
+  background: #ffcc99;
   float:left;
   border: 2px solid black;
   margin: 4px;
+  
 }
+/*-webkit-transform: rotate(353deg); /* Chrome, Safari, Opera */
+  /*transform: rotate(353deg);*/
 </style>
 
 <div class="container-fluid">
@@ -50,25 +61,24 @@
   
   <div class="col-xs-8">
           <div class="container">
-    <h3>@foreach($project as $p)
+    <h3><font color="#cc6600" size="10px">@foreach($project as $p)
       {{$p->project_name}}
-      @endforeach</h3>
+      @endforeach
+      </font></h3>
 
-<table border="4" height="500" width="1350">
+<table border="2" height="450" width="1100">
   <tr>
-    <th width="216"bgcolor="olive">Module
-    </th>
-    <th width="216" bgcolor="yellow">ICE BOX</th>
-    <th width="216" bgcolor="red">EMERGENCY</th>
-    <th width="216" bgcolor="yellow">IN PROGRESS</th>
-    <th width="216" bgcolor="yellow">TESTING</th>
-    <th width="216" bgcolor="yellow">COMPLETE</th>
+    
+    <th width="216" bgcolor="black"><font color="red" >Ice Box</font></th>
+    <th width="216" bgcolor="red"><font color="#003311" >EMERGENCY</font></th>
+    <th width="216" bgcolor="green"><font color="#ff3300" >IN PROGRESS</font></th>
+    <th width="216" bgcolor="blue"><font color="yellow">TESTING</font></th>
+    <th width="216" bgcolor="yellow"><font color="red">COMPLETE</font></th>
   </tr>
   
   <tr>
-    <td>Cloud</td>
     <td>
-        <div class="b">
+        <div class="b"  >
           @foreach($tasks as $task)
           @if(($if_admin[0]->role_id == 1 || $if_admin[0]->role_id == 2) && $task->status_id == 1)
           <div class="b3">
@@ -87,7 +97,7 @@
         </div>
     </td>
     <td>
-      <div class="b">
+      <div class="b"  >
           @foreach($tasks as $task)
           @if(($if_admin[0]->role_id == 1 || $if_admin[0]->role_id == 2) && $task->status_id == 5)
           <div class="b3">
@@ -107,9 +117,9 @@
         </div>
     </td>
     <td>
-      <div class="b">
+      <div class="b"  >
           @foreach($tasks as $task)
-          @if(($if_admin[0]->role_id == 1 || $if_admin[0]->role_id) && $task->status_id == 2)
+          @if(($if_admin[0]->role_id == 1 || $if_admin[0]->role_id  == 2) && $task->status_id == 2)
           <div class="b3">
           <a href="/tasks/{{$task->tid}}/edit/"><p>{{$task->task}}</p></a>
           </div>
@@ -126,9 +136,9 @@
         </div>
     </td>
     <td>
-      <div class="b">
+      <div class="b"  >
           @foreach($tasks as $task)
-          @if(($if_admin[0]->role_id || $if_admin[0]->role_id)&& $task->status_id == 3)
+          @if(($if_admin[0]->role_id || $if_admin[0]->role_id == 2)&& $task->status_id == 3)
           <div class="b3">
           <a href="/tasks/{{$task->tid}}/edit/"><p>{{$task->task}}</p></a>
           </div>
@@ -145,7 +155,7 @@
         </div>
     </td>
     <td>
-      <div class="b">
+      <div class="b"  >
           @foreach($tasks as $task)
           @if(($if_admin[0]->role_id == 1 || $if_admin[0]->role_id == 2)&& $task->status_id == 4)
           <div class="b3">
@@ -165,97 +175,8 @@
     </td>
 
   </tr>
-  <tr>
-    <td>Injestion Engine</td>
-    <td>
-      <div class="b">
-          <div class="b1" >
-            <p>DDesign</p>
-          </div>
-          <div class="b2">
-            <p>DDesign</p>
-          </div> 
-          <div class="b3">
-          <p>DDesign</p>
-          </div>
-        </div>
-    </td>
-    
-    <td>
-      <div class="b">
-          <div class="b1" >
-            <p>DDesign</p>
-          </div>
-          <div class="b2">
-            <p>DDesign</p>
-          </div> 
-          
-        </div>
-    </td>
-    </td>
-    <td>
-      <div class="b">
-          <div class="b1" >
-            <p>DDesign</p>
-          </div>
-          <div class="b2">
-            <p>DDesign</p>
-          </div> 
-          
-        </div>
-    </td>
-    </td>
-    <td></td>
-    <td></td>
-
-  </tr> 
-  <tr>
-    <td>Compression Engine</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>
-      <div class="b">
-          <div class="b1" >
-            <p>DDesign</p>
-          </div>
-          
-        </div>
-    </td>
-    </td>
-
-  </tr>
-  <tr>
-    <td>File Storage Services</td>
-    <td>
-      <div class="b">
-          <div class="b3">
-          <p>DDesign</p>
-          </div>
-          <div class="b2">
-            <p>DDesign</p>
-          </div> 
-          <div class="b3">
-          <p>DDesign</p>
-          </div>
-        </div>
-    </td>
-    </td>
-    <td></td>
-    <td>
-      <div class="b3">
-          <p>DDesign</p>
-          </div>
-    </td>
-    <td></td>
-    <td>
-      <div class="b3">
-          <p>DDesign</p>
-          </div>
-    </td>
-
-  </tr>     
+  
+      
 </table>  
   </div>  
   </div>
